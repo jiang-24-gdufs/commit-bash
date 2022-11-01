@@ -59,4 +59,4 @@ if (existingRemoteUrl !== remoteRepoUrl) {
 }
 
 // 一次性推送到远程仓库
-execSync(`cd ${projectPath} && git push -u origin main`, { stdio: 'inherit' });
+// execSync(`cd ${projectPath} && git push -u origin main`, { stdio: 'inherit' });
