@@ -25,12 +25,6 @@ function generateRandomTimestamp() {
 
 // 设置提交时间戳，并进行提交
 function commitWithTimestamp(timestamp, message) {
-  const cmd = `
-    cd ${projectPath}
-    export GIT_COMMITTER_DATE="${timestamp}"
-    git commit --date="${timestamp}" -m "${message}"
-  `;
-
   // 添加一些实际的代码修改
   // 例如，创建一个新的文件，或修改现有文件
   const cmdCreateFile = `cd ${projectPath} && echo "${timestamp}" > file.txt`;
@@ -40,7 +34,7 @@ function commitWithTimestamp(timestamp, message) {
   const cmdAdd = `cd ${projectPath} && git add -A`;
   execSync(cmdAdd, { stdio: 'inherit' });
 
-  const cmdCommit = `cd ${projectPath} && git commit -m "${message}"`;
+  const cmdCommit = `cd ${projectPath} && git commit --date="${timestamp}" -m "${message}"`;
   execSync(cmdCommit, { stdio: 'inherit' });
 }
 
