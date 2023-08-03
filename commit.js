@@ -27,7 +27,17 @@ function commitWithTimestamp(timestamp, message) {
     git commit --date="${timestamp}" -m "${message}"
   `;
 
-  execSync(cmd, { stdio: 'inherit' });
+  // 添加一些实际的代码修改
+  // 例如，创建一个新的文件，或修改现有文件
+  const cmdCreateFile = `cd ${projectPath} && echo "${timestamp}" > file.txt`;
+  execSync(cmdCreateFile, { stdio: 'inherit' });
+
+  // 添加和提交代码修改
+  const cmdAdd = `cd ${projectPath} && git add -A`;
+  execSync(cmdAdd, { stdio: 'inherit' });
+
+  const cmdCommit = `cd ${projectPath} && git commit -m "${message}"`;
+  execSync(cmdCommit, { stdio: 'inherit' });
 }
 
 // 批量提交
