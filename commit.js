@@ -9,7 +9,7 @@ const remoteRepoUrl = 'https://github.com/jiang-24-gdufs/commit-bash';
 // 生成随机时间戳函数
 function generateRandomTimestamp() {
   const now = Date.now(); // 获取当前时间的时间戳（毫秒）
-  const oneYearAgo = now - 31536000000 * 2; // 一年前的时间戳（毫秒）
+  const oneYearAgo = now - 31536000000; // 一年前的时间戳（毫秒）
   const randomTimestamp = new Date(oneYearAgo + Math.floor(Math.random() * (now - oneYearAgo))); // 随机时间戳在一年前和当前时间之间
 
   const year = randomTimestamp.getFullYear();
