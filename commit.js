@@ -8,12 +8,16 @@ const remoteRepoUrl = 'https://github.com/jiang-24-gdufs/commit-bash';
 
 // 生成随机时间戳函数
 function generateRandomTimestamp() {
-  const year = 2022 + Math.floor(Math.random() * 2);      // 随机选择 2022 或 2023 年
-  const month = 1 + Math.floor(Math.random() * 12);       // 随机选择 1 到 12 月
-  const day = 1 + Math.floor(Math.random() * 28);         // 随机选择 1 到 28 日
-  const hour = Math.floor(Math.random() * 24);            // 随机选择 0 到 23 小时
-  const minute = Math.floor(Math.random() * 60);          // 随机选择 0 到 59 分钟
-  const second = Math.floor(Math.random() * 60);          // 随机选择 0 到 59 秒钟
+  const now = Date.now(); // 获取当前时间的时间戳（毫秒）
+  const oneYearAgo = now - 31536000000 * 2; // 一年前的时间戳（毫秒）
+  const randomTimestamp = new Date(oneYearAgo + Math.floor(Math.random() * (now - oneYearAgo))); // 随机时间戳在一年前和当前时间之间
+
+  const year = randomTimestamp.getFullYear();
+  const month = String(randomTimestamp.getMonth() + 1).padStart(2, '0');
+  const day = String(randomTimestamp.getDate()).padStart(2, '0');
+  const hour = String(randomTimestamp.getHours()).padStart(2, '0');
+  const minute = String(randomTimestamp.getMinutes()).padStart(2, '0');
+  const second = String(randomTimestamp.getSeconds()).padStart(2, '0');
 
   const timestamp = `${year}-${month}-${day} ${hour}:${minute}:${second}`;
   return timestamp;
@@ -41,7 +45,7 @@ function commitWithTimestamp(timestamp, message) {
 }
 
 // 批量提交
-for (let i = 0; i < 5; i++) {
+for (let i = 0; i < 135; i++) {
   const timestamp = generateRandomTimestamp();
   commitWithTimestamp(timestamp, 'Your commit message');
 }
